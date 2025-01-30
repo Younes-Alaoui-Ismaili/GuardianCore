@@ -2,17 +2,17 @@
 
 > Enterprise-grade fraud detection powered by CNCF stack
 
-[![Build Status](https://github.com/yourusername/guardiancore/workflows/CI/badge.svg)](https://github.com/yourusername/guardiancore/actions)
-[![CNCF Status](https://img.shields.io/badge/CNCF-Sandbox-blue.svg)](https://landscape.cncf.io/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ## 🎯 Overview
 
 GuardianCore is a cloud-native fraud detection platform that leverages AI/ML for real-time transaction analysis. Built on CNCF standards, it delivers enterprise-grade security with zero infrastructure costs.
 
 ## 🏗️ Architecture
+![Architecture](https://github.com/user-attachments/assets/64218bf8-b8ea-46cc-9fcf-d0ebe39cbb01)
+)
 
-
+## 🧑🏻‍💻 Data-Flow
+![Logo](C:\Users\Utilisateur\Documents\Travail\DevWorkspace\Data_Flow)
 ### 🔧 Core Components
 
 | Service | Technology | Purpose |
