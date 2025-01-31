@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.bolt/
+package-lock.json
+
+# IDE
+.vscode/
+*.ini
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.*
+
+# System files
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# Personal files
+Documents/
+Downloads/
+AppData/
+*.pdf
+*.xlsx
+*.rtf
+*.docx
+*.zip
+*.exe
+*.log
