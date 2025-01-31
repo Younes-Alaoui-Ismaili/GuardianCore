@@ -1,93 +1,104 @@
-# **GuardCore 🔒**  
-**Secure IoT Communication Platform**  
-*An Open-Source Guardian for Your Connected Devices*
+# **GuardCore** 🔒  
+*Secure IoT Communication Platform*  
+**An Open-Source Guardian for Your Connected Devices**
 
 ---
 
 ## 🌐 **The Challenge**  
-In today's hyper-connected world, IoT devices often transmit sensitive data (e.g., medical metrics, industrial sensors) over vulnerable networks. A single unencrypted MQTT message or a compromised device can expose entire systems to **data breaches**, **spoofing attacks**, or **ransomware**. Traditional solutions either lack end-to-end security or lock users into expensive proprietary ecosystems.
+In today’s hyper-connected world, IoT devices transmit sensitive data (e.g., medical records, industrial sensors) over vulnerable networks. Using unsecured protocols like MQTT exposes data to risks such as:  
+- **Data breaches**  
+- **Spoofing attacks**  
+- **Man-in-the-middle interceptions**  
+
+There is a growing need for a robust and scalable solution to secure IoT communications and protect sensitive information.
 
 ---
 
-## 🛡️ **GuardCore's Solution**  
-GuardCore acts as a **security forcefield** for IoT ecosystems, combining **military-grade encryption** (AES-256 + TLS 1.3) with open-source flexibility. Unlike closed systems, it enables developers to implement **zero-trust security** across any device-to-cloud workflow while maintaining full control.
+## 🛡️ **GuardCore’s Solution**  
+GuardCore acts as a security shield for IoT ecosystems by combining:  
+- **Military-grade encryption (AES-256 + TLS 1.3)**  
+- **Zero-trust authentication protocols**  
+- **Open-source flexibility for seamless integration and customization**
+
+With GuardCore, developers can implement secure, scalable communication systems while maintaining full control over their IoT workflows.
 
 ---
 
-## 💡 **Example: Smart Home Security**
+## 🏠 **Example Use Case: Smart Home Security**  
 
-### **Problem:**  
-A Wi-Fi door lock sends status updates via plaintext MQTT, making it vulnerable to packet sniffing.
+### 🚨 Problem:  
+A Wi-Fi door lock sends updates via plaintext MQTT, making it vulnerable to packet sniffing.
 
-### **GuardCore Fix:**  
-```python
-# Before (Insecure)
-client.publish("home/lock", "UNLOCKED")  
-
-# After (GuardCore Secured)
-encrypted = aes.encrypt("UNLOCKED", key=SHARED_SECRET)  
-client.publish("home/lock", encrypted, qos=2, tls=True)
-```
-
+### ✅ GuardCore Fix:  
 With GuardCore, the lock’s data becomes unreadable to interceptors while allowing legitimate apps to decrypt it via GuardCore’s verified key exchange.
+
+```python
+client.publish("lock/data", "UNLOCKED",
+               properties=paho.mqtt.properties.Properties(
+                   paho.mqtt.packettypes.PacketTypes.PUBLISH,
+                   user_property=[("key", "encrypted_key")]))
+```
 
 ---
 
 ## ✨ **Features**
-- **End-to-End Encryption**: Military-grade AES-256 encryption and TLS 1.3 for secure communications.
-- **Open-Source Flexibility**: Fully customizable and extensible for any IoT use case.
-- **Zero-Trust Security**: Implements device authentication and secure data exchange protocols.
-- **Real-Time Monitoring**: Includes a dashboard for visualizing IoT device activity and alerts.
+- 🔐 **End-to-End Encryption:** Military-grade AES-256 encryption and TLS 1.3 ensure secure communication.  
+- 🌍 **Open-Source Flexibility:** Fully customizable and extensible for any IoT use case.  
+- 🚀 **Zero-Trust Security:** Implements device authentication and secure data exchange protocols.  
+- 📊 **Real-Time Monitoring:** Includes an interactive dashboard for visualizing IoT device activity and alerts.
 
 ---
 
-## 🚀 **Getting Started**
+## ⚙️ **Getting Started**
 
-### Prerequisites:
+### 🛠️ Prerequisites:
 1. Clone the repository:
    ```bash
    git clone https://github.com/Younes-Alaoui-Ismaili/GuardianCore.git
    cd GuardianCore
    ```
+
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt  # For backend
    npm install                      # For frontend
    ```
 
-### Quick Start:
+### 🚀 Quick Start:
 1. Start the backend services:
    ```bash
-   docker-compose up --build
+   python app.py
    ```
-2. Access the dashboard:
-   Open your browser and navigate to `http://localhost:3000`.
+
+2. Access the dashboard: Open your browser and navigate to `http://localhost:3000`.
 
 ---
 
-## 📊 **Architecture**
-```mermaid
-graph TD
-    A[IoT Devices] -->|Secure MQTT| B(MQTT Broker)
-    B -->|gRPC| C[API Gateway]
-    C --> D{Kubernetes Cluster}
-    D --> E[(Time Series DB)]
-    D --> F[AI Engine]
-    F --> G{{React Dashboard}}
-    G --> H[Alert Manager]
-```
+## 🏗️ **Architecture**
+
+The GuardCore platform is built on a modular architecture to ensure scalability and flexibility:
+
+| Component          | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| IoT Devices         | Devices communicating securely using MQTT.                                 |
+| Secure MQTT Broker  | Handles encrypted communication between devices.                           |
+| API Gateway         | Interfaces between IoT devices and backend services.                      |
+| Kubernetes Cluster  | Manages backend services for scalability and fault tolerance.              |
+| Time Series DB      | Stores historical data for analysis.                                       |
+| AI Engine           | Detects anomalies and manages intelligent alerts.                         |
+| React Dashboard     | Provides a user-friendly interface for monitoring and administration.      |
 
 ---
 
-## 🤝 **Contributing**
-We welcome contributions! To contribute:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
+## 🤝 **Contributing**  
+We welcome contributions! To contribute:  
+1. Fork the repository.  
+2. Create a new branch (`git checkout -b feature/newFeature`).  
+3. Commit your changes (`git commit -m "Add newFeature"`).  
+4. Push to the branch (`git push origin feature/newFeature`).  
 5. Open a pull request.
 
 ---
 
-## 📜 **License**
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📜 **License**  
+This project is licensed under the MIT License – see the `LICENSE` file for details.
