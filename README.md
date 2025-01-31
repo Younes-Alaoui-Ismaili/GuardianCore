@@ -91,19 +91,3 @@ We welcome contributions! To contribute:
 
 ## 📜 **License**
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Avec cette mise en page :
-- Les sections sont bien séparées pour une meilleure lisibilité.
-- Les exemples de code sont encadrés dans des blocs de code.
-- Les diagrammes sont intégrés avec Mermaid pour une visualisation claire.
-- Une structure professionnelle est maintenue tout au long du fichier README.md.
-
-Vous pouvez copier et coller ce contenu dans votre fichier `README.md` sur GitHub pour obtenir une présentation soignée et professionnelle.
-
-Citations:
-[1] https://pplx-res.cloudinary.com/image/upload/v1738296090/user_uploads/gzXDoGSVpfBqFGP/image.jpg
-
----
-Réponse de Perplexity: pplx.ai/share
