@@ -1,104 +1,71 @@
-# **GuardCore** 🔒  
-*Secure IoT Communication Platform*  
-**An Open-Source Guardian for Your Connected Devices**
+# GuardianCore
+
+> Prototype 2025, exploration zero-trust pour communication IoT (AES-256, TLS 1.3).
+
+![Status](https://img.shields.io/badge/statut-prototype-blue)
+![Maintenance](https://img.shields.io/badge/maintenance-non%20maintenu-lightgrey)
+![Stack](https://img.shields.io/badge/stack-Python%20%7C%20MQTT%20%7C%20TLS%201.3-success)
+![Year](https://img.shields.io/badge/an-2025-informational)
 
 ---
 
-## 🌐 **The Challenge**  
-In today’s hyper-connected world, IoT devices transmit sensitive data (e.g., medical records, industrial sensors) over vulnerable networks. Using unsecured protocols like MQTT exposes data to risks such as:  
-- **Data breaches**  
-- **Spoofing attacks**  
-- **Man-in-the-middle interceptions**  
+## Pourquoi ce repo
 
-There is a growing need for a robust and scalable solution to secure IoT communications and protect sensitive information.
+Exploration de patterns de sécurité IoT zero-trust qui ont nourri la conception du sous-système privacy d'Aura, mon compagnon vocal IA edge-first pour personnes isolées (Solutions Robaian, Montréal).
 
----
+**Statut** : prototype d'exploration, non maintenu depuis janvier 2025.
 
-## 🛡️ **GuardCore’s Solution**  
-GuardCore acts as a security shield for IoT ecosystems by combining:  
-- **Military-grade encryption (AES-256 + TLS 1.3)**  
-- **Zero-trust authentication protocols**  
-- **Open-source flexibility for seamless integration and customization**
-
-With GuardCore, developers can implement secure, scalable communication systems while maintaining full control over their IoT workflows.
+**Pertinence Aura** : les patterns de chiffrement bout-en-bout (AES-256), d'authentification zero-trust et de canal MQTT chiffré ont été directement réutilisés dans le sous-système privacy d'Aura (SQLCipher AES-256, PKI propriétaire, audit trail HMAC chaîné, conformité Loi 25 du Québec).
 
 ---
 
-## 🏠 **Example Use Case: Smart Home Security**  
+## Ce que démontre ce projet
 
-### 🚨 Problem:  
-A Wi-Fi door lock sends updates via plaintext MQTT, making it vulnerable to packet sniffing.
+- Chiffrement de bout en bout (AES-256 + TLS 1.3) sur MQTT.
+- Authentification zero-trust pour devices IoT.
+- Tableau de bord temps réel pour observabilité d'écosystème IoT.
+- Architecture modulaire (broker MQTT sécurisé + API gateway + time series DB + UI React).
 
-### ✅ GuardCore Fix:  
-With GuardCore, the lock’s data becomes unreadable to interceptors while allowing legitimate apps to decrypt it via GuardCore’s verified key exchange.
+## Architecture
 
-```python
-client.publish("lock/data", "UNLOCKED",
-               properties=paho.mqtt.properties.Properties(
-                   paho.mqtt.packettypes.PacketTypes.PUBLISH,
-                   user_property=[("key", "encrypted_key")]))
+```mermaid
+flowchart LR
+    Devices[IoT Devices] -->|MQTT + TLS 1.3| Broker[Secure MQTT Broker]
+    Broker --> Gateway[API Gateway]
+    Gateway --> Backend[Backend Services]
+    Backend --> TSDB[(Time Series DB)]
+    Backend --> AI[AI Anomaly Engine]
+    AI --> Dashboard[React Dashboard]
+    TSDB --> Dashboard
 ```
 
----
+## Stack
 
-## ✨ **Features**
-- 🔐 **End-to-End Encryption:** Military-grade AES-256 encryption and TLS 1.3 ensure secure communication.  
-- 🌍 **Open-Source Flexibility:** Fully customizable and extensible for any IoT use case.  
-- 🚀 **Zero-Trust Security:** Implements device authentication and secure data exchange protocols.  
-- 📊 **Real-Time Monitoring:** Includes an interactive dashboard for visualizing IoT device activity and alerts.
+- **Backend** : Python (Flask + paho-mqtt).
+- **Frontend** : React + TypeScript.
+- **Sécurité** : AES-256 + TLS 1.3 + zero-trust auth.
+- **Stockage** : Time Series DB pour historique.
 
----
+## Démarrer
 
-## ⚙️ **Getting Started**
+```bash
+git clone https://github.com/Younes-Alaoui-Ismaili/GuardianCore.git
+cd GuardianCore
+pip install -r requirements.txt
+npm install
+python app.py
+```
 
-### 🛠️ Prerequisites:
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Younes-Alaoui-Ismaili/GuardianCore.git
-   cd GuardianCore
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt  # For backend
-   npm install                      # For frontend
-   ```
-
-### 🚀 Quick Start:
-1. Start the backend services:
-   ```bash
-   python app.py
-   ```
-
-2. Access the dashboard: Open your browser and navigate to `http://localhost:3000`.
+Dashboard : `http://localhost:3000`.
 
 ---
 
-## 🏗️ **Architecture**
+## À propos
 
-The GuardCore platform is built on a modular architecture to ensure scalability and flexibility:
+Younes Alaoui Ismaili, fondateur de Solutions Robaian inc.
+Site web (à venir) : [robaian.com](https://robaian.com)
+Contact : info@robaian.com
 
-| Component          | Description                                                                 |
-|---------------------|-----------------------------------------------------------------------------|
-| IoT Devices         | Devices communicating securely using MQTT.                                 |
-| Secure MQTT Broker  | Handles encrypted communication between devices.                           |
-| API Gateway         | Interfaces between IoT devices and backend services.                      |
-| Kubernetes Cluster  | Manages backend services for scalability and fault tolerance.              |
-| Time Series DB      | Stores historical data for analysis.                                       |
-| AI Engine           | Detects anomalies and manages intelligent alerts.                         |
-| React Dashboard     | Provides a user-friendly interface for monitoring and administration.      |
+## Licence
 
----
-
-## 🤝 **Contributing**  
-We welcome contributions! To contribute:  
-1. Fork the repository.  
-2. Create a new branch (`git checkout -b feature/newFeature`).  
-3. Commit your changes (`git commit -m "Add newFeature"`).  
-4. Push to the branch (`git push origin feature/newFeature`).  
-5. Open a pull request.
-
----
-
-## 📜 **License**  
-This project is licensed under the MIT License – see the `LICENSE` file for details.
+MIT.
